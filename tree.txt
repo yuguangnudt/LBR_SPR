@@ -1,0 +1,59 @@
+.
+├── calc_optical_flow.py
+├── configs
+│   ├── avenue.cfg
+│   ├── ShanghaiTech.cfg
+│   ├── UCSDped1.cfg
+│   └── UCSDped2.cfg
+├── data
+├── extract_bbox.py
+├── extract_stc.py
+├── flowlib.py
+├── FlowNet2_src
+├── fore_det
+│   ├── _base_
+│   ├── inference.py
+│   ├── obj_det_checkpoints
+│   │   └── yolov3_d53_mstrain-608_273e_coco-139f5633.pth
+│   ├── obj_det_config
+│   │   └── yolov3_d53_mstrain-608_273e_coco.py
+│   ├── obj_det_with_motion.py
+├── LICENSE
+├── misc.py
+├── model
+├── optical_flow
+│   ├── avenue
+│   │   ├── testing
+│   │   └── training
+│   ├── ShanghaiTech
+│   │   ├── Testing
+│   │   └── training
+│   ├── UCSDped1
+│   │   ├── Test
+│   │   └── Train
+│   └── UCSDped2
+│       ├── Test
+│       └── Train
+├── raw_datasets
+│   ├── avenue
+│   │   ├── ground_truth_demo
+│   │   ├── testing
+│   │   └── training
+│   ├── ShanghaiTech
+│   │   ├── Testing
+│   │   ├── training
+│   │   └── training.zip
+│   ├── UCSDped1
+│   │   ├── Test
+│   │   └── Train
+│   ├── UCSDped2
+│   │   ├── Test
+│   │   └── Train
+├── README.md
+├── results
+├── test.py
+├── train.py
+├── tree.txt
+├── utils.py
+└── vad_datasets.py
+

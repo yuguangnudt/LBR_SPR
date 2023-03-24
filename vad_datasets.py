@@ -12,8 +12,8 @@ import torchvision.transforms as transforms
 transform = transforms.Compose([
         transforms.ToTensor(),
     ])
-# frame_size: the frame information of each dataset: (h, w, file_format, scene_num)
-frame_size = {'UCSDped1' : (158, 238, '.tif', 1), 'UCSDped2': (240, 360, '.tif', 1), 'avenue': (360, 640, '.jpg', 1),
+# frame_info: the frame information of each dataset: (h, w, file_format, scene_num)
+frame_info = {'UCSDped1' : (158, 238, '.tif', 1), 'UCSDped2': (240, 360, '.tif', 1), 'avenue': (360, 640, '.jpg', 1),
               'ShanghaiTech': (480, 856, '.jpg', 1)}
 
 
@@ -53,31 +53,6 @@ def img_batch_tensor2numpy(img_batch):
             return np.transpose(img_batch, [0, 2, 3, 1]).numpy()
         else:
             return np.transpose(img_batch, [0, 1, 3, 4, 2]).numpy()
-
-
-class bbox_collate:
-    def __init__(self, mode):
-        self.mode = mode
-
-    def collate(self, batch):
-        if self.mode == 'train':
-            return bbox_collate_train(batch)
-        elif self.mode == 'test':
-            return bbox_collate_test(batch)
-        else:
-            raise NotImplementedError
-
-
-def bbox_collate_train(batch):
-    batch_data = [x[0] for x in batch]
-    batch_target = [x[1] for x in batch]
-    return torch.cat(batch_data, dim=0), batch_target
-
-
-def bbox_collate_test(batch):
-    batch_data = [x[0] for x in batch]
-    batch_target = [x[1] for x in batch]
-    return batch_data, batch_target
 
 
 def get_foreground(img, bboxes, patch_size):

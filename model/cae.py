@@ -1,7 +1,5 @@
 import torch
 import torch.nn as nn
-import random
-import torch.nn.functional as F
 
 
 class double_conv(nn.Module):
@@ -68,7 +66,7 @@ class outconv(nn.Module):
 
 
 class ReconCAE(nn.Module):
-    def __init__(self, features_root=32, tot_frame_num=5, use_flow=True):
+    def __init__(self, features_root=32, tot_frame_num=5, use_flow=False):
         super(ReconCAE, self).__init__()
         self.raw_channel_num = 3  # RGB channel no.
         self.of_channel_num = 2  # optical flow channel no.
@@ -105,12 +103,12 @@ class ReconCAE(nn.Module):
         if self.use_flow:
             target_of = of
         else:
-            target_of = torch.zeros(1).cuda().type(torch.cuda.FloatTensor)
+            target_of = torch.zeros(1).cuda()
 
         output_raw = self.raw_ae(raw)
         if self.use_flow:
             output_of = self.of_ae(raw)
         else:
-            output_of = torch.zeros(1).cuda().type(torch.cuda.FloatTensor)
+            output_of = torch.zeros(1).cuda()
 
         return target_raw, target_of, output_raw, output_of
