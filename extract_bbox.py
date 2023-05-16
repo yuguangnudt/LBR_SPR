@@ -7,8 +7,12 @@ import argparse
 
 
 def extract_bbox(dataset_name, mode):
-    config_file = 'fore_det/obj_det_config/yolov3_d53_mstrain-608_273e_coco.py'
-    checkpoint_file = 'fore_det/obj_det_checkpoints/yolov3_d53_mstrain-608_273e_coco-139f5633.pth'
+    if dataset_name in ['UCSDped1', 'UCSDped2']:
+        config_file = 'fore_det/obj_det_config/yolov3_d53_mstrain-608_273e_coco.py'
+        checkpoint_file = 'fore_det/obj_det_checkpoints/yolov3_d53_mstrain-608_273e_coco-139f5633.pth'
+    elif dataset_name in ['avenue', 'ShanghaiTech']:
+        config_file = 'fore_det/obj_det_config/yolov3_d53_320_273e_coco.py'
+        checkpoint_file = 'fore_det/obj_det_checkpoints/yolov3_d53_320_273e_coco-421362b6.pth'
 
     # set dataset for foreground extraction
     # raw dataset

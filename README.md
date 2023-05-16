@@ -23,7 +23,7 @@ mmcv-full 1.3.1
 
 (2) Calculate optical flow: Follow the [instructions](https://github.com/vt-vl-lab/flownet2.pytorch) to compile FlowNet2. Then download and move the pretrained [FlowNet 2.0](https://drive.google.com/file/d/1hF8vS6YeHkx3j2pfCeQqqZGwA_PJq_Da/view?usp=sharing) (`FlowNet2_checkpoint.pth.tar`) to `./FlowNet2_src/pretrained`.  Finally run (in PyTorch 0.3.0): `python calc_optical_flow.py --dataset_name {UCSDped1, UCSDped2, avenue or ShanghaiTech} --mode {train or test}`. As an alternative, you can follow this [repository](https://github.com/LiUzHiAn/hf2vad/tree/master/pre_process) to extract optical flow to avoid the issues related to PyTorch being too old.
 
-(3) Localize foreground objects: Follow the [instructions](https://github.com/open-mmlab/mmdetection/blob/v2.11.0/docs/get_started.md) to install mmdetection (v2.11.0). Then download the pretrained object detector [YOLOv3](download.openmmlab.com/mmdetection/v2.0/yolo/yolov3_d53_mstrain-608_273e_coco/yolov3_d53_mstrain-608_273e_coco-139f5633.pth) in this [page](https://github.com/open-mmlab/mmdetection/blob/v2.11.0/configs/yolo/README.md), and move it to `fore_det/obj_det_checkpoints` . Finally run: `python extract_bbox.py --dataset_name {UCSDped1, UCSDped2, avenue or ShanghaiTech} --mode {test or merge}`.
+(3) Localize foreground objects: Follow the [instructions](https://github.com/open-mmlab/mmdetection/blob/v2.11.0/docs/get_started.md) to install mmdetection (v2.11.0). Then download the pretrained object detectors YOLOv3 in this [page](https://github.com/open-mmlab/mmdetection/blob/v2.11.0/configs/yolo/README.md) (Scale 320 and 608), and move them to `fore_det/obj_det_checkpoints` . Finally run: `python extract_bbox.py --dataset_name {UCSDped1, UCSDped2, avenue or ShanghaiTech} --mode {test or merge}`.
 
 (4) Extract STCs for training and testing: `python extract_stc.py --{extract_training_stc or extract_testing_stc} --dataset_name {UCSDped1, UCSDped2, avenue or ShanghaiTech} --mode {test or merge}` .
 
@@ -40,8 +40,6 @@ python train.py --dataset_name {UCSDped1, UCSDped2, avenue or ShanghaiTech} --mo
 ```python
 python test.py --dataset_name {UCSDped1, UCSDped2, avenue or ShanghaiTech} --mode {test or merge}
 ```
-
-To facilitate testing and verification, we provide the models (without motion enhancement) trained on testing set (i.e. the partial mode, see Sec. 4.1 of our paper). Since the provided models are trained under partial mode, please set mode=test to test them.
 
 ### 5. Citation
 
